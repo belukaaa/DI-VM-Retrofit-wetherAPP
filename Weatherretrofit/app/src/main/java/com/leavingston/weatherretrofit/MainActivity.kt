@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.gms.location.*
 import com.leavingston.weatherretrofit.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 import kotlin.collections.ArrayList
@@ -39,16 +40,25 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+        val lastCity = binding.CityTextView.text
+        binding.currentLocation.text = lastCity
+
+
+
+
+
 
         mySharedPref = sharedPreferences(context = this)
 
 
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
 
 
+        okey()
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         userViewModel.data.observe(this , androidx.lifecycle.Observer {
@@ -66,15 +76,20 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+
+    }
+
+    private fun okey(){
         binding.buttonishe.setOnClickListener {
             val city_name = binding.editTextishe.text.toString()
+            binding.currentLocation.visibility = View.GONE
             mySharedPref.saveLastLocation(city_name)
             getSelectedCityWeather(city_name)
             binding.editTextishe.text.clear()
 
             if (isNetworkAvailable()) {
 
-              userViewModel.fetchData()
+                userViewModel.fetchData()
 
                 Toast.makeText(applicationContext, "internet is ON ", Toast.LENGTH_SHORT).show()
 
@@ -85,9 +100,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "internet is OFF ", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
-
 
 
 
@@ -109,15 +122,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun fail(fail: String?) {
         binding.Celsius.visibility = View.GONE
-        binding.Celsius.text = fail
-
-
         binding.weather.visibility = View.GONE
-        binding.weather.text = fail
+        binding.currentLocation.visibility = View.VISIBLE
+
+        val lastCity = binding.CityTextView.text
+        val lastCityCels = binding.Celsius.text
+        binding.currentLocation.text = "ბოლო ნაჩვენები ლოკაცია : " + lastCity + "\n" + lastCityCels
+
         binding.CityTextView.visibility = View.GONE
-        binding.CityTextView.text = fail
+
         binding.okey.text = fail
-        title = "სახელი არასწორია ჯიგარო"
 
     }
 
@@ -128,19 +142,18 @@ class MainActivity : AppCompatActivity() {
 
         binding.CityTextView.visibility = View.VISIBLE
 
-
-
-
         Log.e("City Name", "${x?.name}")
         val kelvin = x?.main?.temp?.toInt()
-        val celsius = kelvin?.minus(273).toString()
-        binding.Celsius.text = "$celsius°C"
+        val celsius = kelvin?.minus(273)
+        val celsius1 = Utils.changeCelsius(celsius)
+        binding.Celsius.text = celsius1
 
         val lat = x?.coord?.lat
         val long = x?.coord?.lon
 //            val city = getCIty(lat , long)
 
         binding.weather.text = x?.weather?.toString()
+        Log.e("yleeeooo" , "${x?.weather}")
         binding.CityTextView.text = x?.name
         val id: Long
         val main: String
@@ -152,11 +165,50 @@ class MainActivity : AppCompatActivity() {
         main = listOfWeatherElement[0].description
         description = listOfWeatherElement[0].description
 
-        binding.weather.text = description
+        changeBackground(description)
 
-        binding.okey.text = x.wind.speed.toString()
+        val result = Utils.changeWeather(description)
+
+
+
+        binding.weather.text = result
+        Log.e("yleeeooo" , "${description}")
+
+
+        binding.okey.text ="ქარი დაწუის " + x.wind.speed.toString() + " კმ/სთ სიჩქარით"
+        Log.e("yleeeooo" , "${x?.wind?.speed}")
+
         title = ("${x?.name} - ს ამინდი")
 
+    }
+    fun changeBackground(description : String){
+        if(description == "clear sky"){
+            binding.background.setBackgroundResource(R.drawable.unnamed)
+        }
+
+        if(description == "few clouds"){
+            binding.background.setBackgroundResource(R.drawable.avoe)
+
+        }
+        if(description == "overcast clouds"){
+            binding.background.setBackgroundResource(R.drawable.avoe)
+
+        }
+        if(description == "broken clouds"){
+            binding.background.setBackgroundResource(R.drawable.avoe)
+
+        }
+        if (description == "scattered clouds"){
+            binding.background.setBackgroundResource(R.drawable.avoe)
+
+        }
+        if (description.contains("snow")){
+            binding.background.setBackgroundResource(R.drawable.snowing)
+        }
+        if (description.contains("rain")){
+            binding.background.setBackgroundResource(R.drawable.rain)
+
+        }
     }
 
 
