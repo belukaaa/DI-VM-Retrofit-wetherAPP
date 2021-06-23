@@ -1,114 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:fillViewport="true"
+
+    >
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:background="@android:color/white"
+    tools:context=".MainActivity"
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="match_parent"
         android:id="@+id/background"
-        tools:ignore="MissingPrefix"
-        android:layout_height="200dp" />
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_marginBottom="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextishe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingPrefix" />
 
     <TextView
-        android:textColor="@android:color/black"
         android:id="@+id/CityTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:textAlignment="center"
+        android:layout_marginTop="15dp"
         android:text="Searching for City..."
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
         android:textSize="40sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:textColor="@android:color/black"
-        android:layout_marginTop="15dp"
-        android:textSize="30sp"
         android:id="@+id/Celsius"
-        android:textAlignment="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="Searching for Celsius"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/CityTextView" />
 
 
     <TextView
-        android:textColor="@android:color/black"
-
-        android:textAlignment="center"
-        android:layout_marginTop="15dp"
-        android:textSize="25sp"
         android:id="@+id/weather"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="Searching for weather"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Celsius" />
 
 
     <TextView
-        android:textColor="@android:color/black"
-
-        android:textAlignment="center"
-        android:layout_marginTop="15dp"
-        android:textSize="20sp"
         android:id="@+id/okey"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="Searching for wind speed"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/weather"/>
+        app:layout_constraintTop_toBottomOf="@id/weather" />
 
     <Button
         android:id="@+id/buttonishe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@android:color/black"
-        android:text="show temperature"
-        android:textColor="@android:color/holo_green_dark"
+        android:layout_marginTop="6dp"
+        android:background="#000000"
+        android:text="ტემპერატურის ჩვენება"
+        android:textColor="#FFFFFF"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextishe" />
 
     <EditText
-
         android:id="@+id/editTextishe"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:background="@null"
         android:hint="ჩაწერე ქალაქი ინგლისურად"
         android:maxLines="4"
+        android:shadowColor="@android:color/holo_red_dark"
+        android:textCursorDrawable="@drawable/sticky"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/okey" />
+        app:layout_constraintTop_toBottomOf="@id/okey">
 
-    <TextView
-        android:textColor="@android:color/black"
+        <requestFocus />
+    </EditText>
 
-        android:id="@+id/currentLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:visibility="invisible"
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/background_2"
+        android:layout_width="match_parent"
+        android:background="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonishe" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonishe"
+        android:layout_height="0dp" >
+
+        <TextView
+
+            android:id="@+id/currentLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            android:text="TextView"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

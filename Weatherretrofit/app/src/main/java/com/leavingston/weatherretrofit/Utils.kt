@@ -7,7 +7,7 @@ object Utils {
     val celsiusArray2 = arrayOf(16,17,18,19,20)
     val celsiusArray3 = arrayOf(21,22,23,24,25)
     val celsiusArray4 = arrayOf(26,27,28,29,30)
-    val celsiusArray5 = arrayOf(31,32,33,34,35,37,38,39,40,41,42,43,44,45,46)
+    val celsiusArray5 = arrayOf(31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46)
 
     fun changeCelsius(int : Int?) : String {
         if(celsiusArray.contains(int)){
