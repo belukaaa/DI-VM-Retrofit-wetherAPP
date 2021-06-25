@@ -168,8 +168,8 @@ class MainActivity : AppCompatActivity() {
 
         Log.e("City Name", "${x?.name}")
         val kelvin = x?.main?.temp?.toInt()
-        val celsius = kelvin?.minus(273)
-        val celsius1 = Utils.changeCelsius(celsius)
+        val kelvinToCelsius = kelvin?.minus(273)
+        val celsius1 = Utils.changeCelsius(kelvinToCelsius)
         binding.Celsius.text = celsius1
 
         val lat = x?.coord?.lat
@@ -196,30 +196,26 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.weather.text = result
-        Log.e("yleeeooo", "${description}")
 
 
         binding.okey.text ="ქარი დაწუის " + x.wind.speed.toString() + " კმ/სთ სიჩქარით"
-        Log.e("yleeeooo", "${x?.wind?.speed}")
-
-        title = ("${x?.name} - ს ამინდი")
 
     }
-    fun changeBackground(description: String){
-        if(description == "clear sky"){
+    fun changeBackground(description: String ){
+        if(description == "clear sky" ){
             binding.background.setBackgroundResource(R.drawable.unnamed)
         }
 
         if(description == "few clouds"){
-            binding.background.setBackgroundResource(R.drawable.avoe)
+            binding.background.setBackgroundResource(R.drawable.few_clouds)
 
         }
         if(description == "overcast clouds"){
-            binding.background.setBackgroundResource(R.drawable.avoe)
+            binding.background.setBackgroundResource(R.drawable.overcast_clouds)
 
         }
         if(description == "broken clouds"){
-            binding.background.setBackgroundResource(R.drawable.avoe)
+            binding.background.setBackgroundResource(R.drawable.overcast_clouds)
 
         }
         if (description == "scattered clouds"){

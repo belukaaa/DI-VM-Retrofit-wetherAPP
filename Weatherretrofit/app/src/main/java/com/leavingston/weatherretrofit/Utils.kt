@@ -1,34 +1,34 @@
 package com.leavingston.weatherretrofit
 
 object Utils {
-    val celsiusYinva = arrayOf(-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20)
-    val celsiusArray = arrayOf(1,2,3,4,5,6,7,8,9,10)
-    val celsiusArray1 = arrayOf(11,12,13,14,15)
-    val celsiusArray2 = arrayOf(16,17,18,19,20)
-    val celsiusArray3 = arrayOf(21,22,23,24,25)
-    val celsiusArray4 = arrayOf(26,27,28,29,30)
-    val celsiusArray5 = arrayOf(31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46)
+    val YinvaaDzvlebsXvretsEsBozishvili = arrayOf(-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20)
+    val civaBozishviliviyo = arrayOf(1,2,3,4,5,6,7,8,9,10)
+    val moicviRameShechemisa = arrayOf(11,12,13,14,15)
+    val sigrileaMaraTanCiva = arrayOf(16,17,18,19,20)
+    val sakaifodCxela = arrayOf(21,22,23,24,25)
+    val adugebsYvelafers = arrayOf(26,27,28,29,30)
+    val oriMzeAnatebs = arrayOf(31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46)
 
     fun changeCelsius(int : Int?) : String {
-        if(celsiusArray.contains(int)){
-            return "სიცივეა და ჩაიცვი თბილად\nტემპერატურა : $int°C  "
+        if(civaBozishviliviyo.contains(int)){
+            return "საარყე ამინდია რო გათბე \nტემპერატურა : $int°C  "
         }
-        if (celsiusArray1.contains(int)){
-            return "საკაიფოდ გრილა და მოიცვი რამე \nტემპერატურა : $int°C  "
+        if (moicviRameShechemisa.contains(int)){
+            return "გრილა და მოიცვი რამე \nტემპერატურა : $int°C  "
         }
-        if (celsiusArray2.contains(int)){
-            return "მცივანებმა ჩაიცვით , დანარჩენებმა იკაიფეთ \nტემპერატურა : $int°C "
+        if (sigrileaMaraTanCiva.contains(int)){
+            return "თან ცივა , თან ცხელა \nტემპერატურა : $int°C "
         }
-        if(celsiusArray3.contains(int)){
-            return "უკვე საკაიფოდ ცხელა ბრატან \nტემპერატურა : $int°C "
+        if(sakaifodCxela.contains(int)){
+            return "უკვე საკაიფოდ ცხელა \nტემპერატურა : $int°C "
         }
-        if(celsiusArray4.contains(int)){
-            return "ბევრი ლუდია საჭირო \nტემპერატურა : $int°C "
-        }
-        if(celsiusArray5.contains(int)){
+        if(adugebsYvelafers.contains(int)){
             return "ადუღებს ყველაფერს \nტემპერატურა : $int°C "
         }
-        if (celsiusYinva.contains(int)) {
+        if(oriMzeAnatebs.contains(int)){
+            return "ორი მზე ანათებს \nტემპერატურა : $int°C "
+        }
+        if (YinvaaDzvlebsXvretsEsBozishvili.contains(int)) {
             return "ყინვაა , თბილაც ჩაიცვი \nტემპერატურა : $int°C "
         }
         if (int == 0){
@@ -45,9 +45,11 @@ object Utils {
 
 //            return "ცა მოწმენდილია რავარც პოლები"
             return "ესეთ მოწმენდილ ცასა \n ვერსადა ნახავ სხვასა"
+//            return "ცა მოწმენდილია"
         }
         if(string == "few clouds"){
             return "კედელს ატაკე დუბელი \n აქა იქ არის ღრუბელი"
+//
         }
         if(string == "overcast clouds"){
             return "მოღრუბლულია ცაო \n ან რამ გაგაოცაო ?! "
